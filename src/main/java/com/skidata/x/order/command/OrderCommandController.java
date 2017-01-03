@@ -4,6 +4,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
  * @since 25/12/16
  */
 @RestController
-@RequestMapping("/orders")
+@RequestMapping(value = "/orders")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class OrderCommandController {
 
@@ -26,7 +28,6 @@ public class OrderCommandController {
 
     @PostMapping
     public CompletableFuture<String> createOrder(@RequestBody CreateOrder createOrder) {
-        String id = UUID.randomUUID().toString();
         return commandGateway.send(createOrder);
     }
 }

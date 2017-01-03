@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,10 +30,18 @@ public class OrderEntry extends AbstractEntity {
     private final List<LineItemEntry> lineItems = new ArrayList<>();
 
 
-    public OrderEntry(Collection<LineItemEntry> lineItems, OrderStatus status, LocalDateTime orderedDate) {
+    public OrderEntry(Collection<LineItemEntry> lineItems) {
 
-        this.status = status;
+        this.status = OrderStatus.PAYMENT_EXPECTED;
         this.lineItems.addAll(lineItems);
-        this.orderedDate = orderedDate;
+        this.orderedDate = LocalDateTime.now();
+    }
+
+    public OrderEntry(LineItemEntry...lineItemEntries){
+        this(Arrays.asList(lineItemEntries));
+    }
+
+    public OrderEntry(){
+        this(new LineItemEntry[0]);
     }
 }

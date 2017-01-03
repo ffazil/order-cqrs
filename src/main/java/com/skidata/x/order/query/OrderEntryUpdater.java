@@ -26,8 +26,8 @@ public class OrderEntryUpdater {
     public void on(OrderCreated created){
         Set<LineItemEntry> lineItems = new HashSet<>();
         created.getOrderLines().forEach(orderLine -> {
-            lineItems.add(new LineItemEntry(orderLine.getMilk().name(), orderLine.getPrice()));
+            lineItems.add(new LineItemEntry(orderLine.getName(), orderLine.getPrice()));
         });
-        orderEntryRepository.save(new OrderEntry(lineItems, created.getStatus(), created.getOrderedDate()));
+        orderEntryRepository.save(new OrderEntry(lineItems));
     }
 }
