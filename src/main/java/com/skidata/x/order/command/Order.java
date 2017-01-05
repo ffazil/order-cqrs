@@ -4,10 +4,13 @@ import com.skidata.x.order.*;
 import com.skidata.x.order.event.OrderCreated;
 import com.skidata.x.order.event.OrderPreparing;
 import com.skidata.x.order.event.PayForOrder;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
+
+import java.util.Set;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
@@ -22,9 +25,12 @@ public class Order {
     private String reference;
     private OrderStatus status;
 
-    @CommandHandler
-    public Order(CreateOrder createOrder){
-        apply(new OrderCreated(createOrder.getId(), createOrder.getOrderLines()));
+    public Order(String reference, Set<OrderLine> orderLines){
+        apply(new OrderCreated(reference, orderLines));
+    }
+
+    Order(){
+
     }
 
     public void prepare(){
@@ -48,7 +54,7 @@ public class Order {
 
     @EventSourcingHandler
     public void on(PayForOrder event){
-
+        this.status = OrderStatus.PAID;
     }
 
 

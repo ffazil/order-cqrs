@@ -28,6 +28,6 @@ public class OrderEntryUpdater {
         created.getOrderLines().forEach(orderLine -> {
             lineItems.add(new LineItemEntry(orderLine.getName(), orderLine.getPrice()));
         });
-        orderEntryRepository.save(new OrderEntry(lineItems));
+        orderEntryRepository.save(new OrderEntry(created.getId(), lineItems));
     }
 }

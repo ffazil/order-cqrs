@@ -21,6 +21,7 @@ import java.util.List;
 @Table(name = "OCOrder")
 public class OrderEntry extends AbstractEntity {
 
+    private final String orderId;
     private final LocalDateTime orderedDate;
     private OrderStatus status;
 
@@ -30,15 +31,15 @@ public class OrderEntry extends AbstractEntity {
     private final List<LineItemEntry> lineItems = new ArrayList<>();
 
 
-    public OrderEntry(Collection<LineItemEntry> lineItems) {
-
+    public OrderEntry(String orderId, Collection<LineItemEntry> lineItems) {
+        this.orderId = orderId;
         this.status = OrderStatus.PAYMENT_EXPECTED;
         this.lineItems.addAll(lineItems);
         this.orderedDate = LocalDateTime.now();
     }
 
     public OrderEntry(LineItemEntry...lineItemEntries){
-        this(Arrays.asList(lineItemEntries));
+        this(null, Arrays.asList(lineItemEntries));
     }
 
     public OrderEntry(){

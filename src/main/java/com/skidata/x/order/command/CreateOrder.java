@@ -1,3 +1,4 @@
+/*
 package com.skidata.x.order.command;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -7,10 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.*;
 
+*/
 /**
  * @author firoz
  * @since 24/12/16
- */
+ *//*
+
 @Getter
 @NoArgsConstructor(force = true)
 public class CreateOrder {
@@ -27,3 +30,4 @@ public class CreateOrder {
         this(Arrays.asList(lines));
     }
 }
+*/

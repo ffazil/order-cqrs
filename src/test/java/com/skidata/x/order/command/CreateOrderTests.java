@@ -1,6 +1,7 @@
 package com.skidata.x.order.command;
 
 import com.google.common.collect.Sets;
+import com.skidata.x.order.api.CreateOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ public class CreateOrderTests {
         OrderLine slimMilk = new OrderLine("Slim milk");
         OrderLine wholeMilk = new OrderLine("Whole milk");
 
-        CreateOrder createOrder = new CreateOrder(Arrays.asList(slimMilk, wholeMilk));
+        CreateOrder createOrder = new CreateOrder(UUID.randomUUID().toString(), Sets.newHashSet(slimMilk, wholeMilk));
         log.info("Serialized text = {}", this.tester.write(createOrder));
 
 

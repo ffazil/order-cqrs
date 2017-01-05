@@ -10,7 +10,6 @@ import javax.money.format.MonetaryFormats;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.skidata.x.order.command.CreateOrder;
 import com.skidata.x.order.command.OrderLine;
 import org.javamoney.moneta.Money;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +47,7 @@ public class JacksonCustomizations {
 
     static class OrderModule extends SimpleModule{
         public OrderModule(){
-            setMixInAnnotation(CreateOrder.class, CreateOrderMixin.class);
+            //setMixInAnnotation(CreateOrder.class, CreateOrderMixin.class);
             setMixInAnnotation(OrderLine.class, OrderLineMixin.class);
         }
 
